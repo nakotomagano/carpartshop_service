@@ -1,4 +1,4 @@
-package com.techdata.carshop.repository;
+package com.mycompany.carshop.repository;
 
 import java.util.Iterator;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.techdata.carshop.model.beans.CarSystem;
-import com.techdata.carshop.utils.HibernateUtil;
+import com.mycompany.carshop.model.beans.CarSystem;
+import com.mycompany.carshop.utils.HibernateUtil;
 /**
  * Repository class for dealing with DB informations related to CarSystem.
  * @author 806558

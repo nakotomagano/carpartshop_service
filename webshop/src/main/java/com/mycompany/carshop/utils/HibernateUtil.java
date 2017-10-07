@@ -1,4 +1,4 @@
-package com.techdata.carshop.utils;
+package com.mycompany.carshop.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

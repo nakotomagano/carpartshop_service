@@ -1,10 +1,10 @@
-package com.techdata.carshop.service;
+package com.mycompany.carshop.service;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import com.techdata.carshop.model.beans.CarSystem;
-import com.techdata.carshop.model.beans.Part;
+import com.mycompany.carshop.model.beans.CarSystem;
+import com.mycompany.carshop.model.beans.Part;
 
 /**
  * Service interface which exposes web methods.

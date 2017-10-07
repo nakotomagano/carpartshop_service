@@ -1,4 +1,4 @@
-package com.techdata.carshop.model.beans;
+package com.mycompany.carshop.model.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

@@ -1,15 +1,15 @@
-package com.techdata.carshop.temp;
+package com.mycompany.carshop.temp;
 
 import javax.xml.ws.Endpoint;
 
-import com.techdata.carshop.service.impl.ServiceImpl;
+import com.mycompany.carshop.service.impl.ServiceImpl;
 
 
 public class CarPartPublisher {
     
 public static void main(String[] args) {
         Endpoint.publish(
-           "http://localhost:8088/carshopservice", 
+           "http://localhost:8089/carshopservice", 
            new ServiceImpl());
     }
 

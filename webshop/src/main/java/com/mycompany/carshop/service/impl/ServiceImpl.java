@@ -1,14 +1,14 @@
-package com.techdata.carshop.service.impl;
+package com.mycompany.carshop.service.impl;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-import com.techdata.carshop.model.beans.CarSystem;
-import com.techdata.carshop.model.beans.Part;
-import com.techdata.carshop.repository.CarSystemDAO;
-import com.techdata.carshop.repository.PartDao;
-import com.techdata.carshop.service.Service;
+import com.mycompany.carshop.model.beans.CarSystem;
+import com.mycompany.carshop.model.beans.Part;
+import com.mycompany.carshop.repository.CarSystemDAO;
+import com.mycompany.carshop.repository.PartDao;
+import com.mycompany.carshop.service.Service;
 
 /**
  * Implementation of service interface.
