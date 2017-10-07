@@ -1,0 +1,22 @@
+/target/
+
+
+# Eclipse #
+.classpath
+.project
+.settings/
+
+#class files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#log files #
+*.log
+
+# Maven
+log/
+target/
