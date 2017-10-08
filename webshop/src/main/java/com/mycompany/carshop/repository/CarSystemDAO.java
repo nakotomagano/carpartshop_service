@@ -20,7 +20,8 @@ public class CarSystemDAO {
      * @param systemId - id of the Car System required.
      * @return CarSystem
      */
-    public final CarSystem getSystem(final int systemId) {
+    public final CarSystem getSystemById(final int systemId) {
+        //TODO: do not iterate all results to get one item. Look at PartDao.
         CarSystem sys = new CarSystem();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -34,6 +35,19 @@ public class CarSystemDAO {
         }
         session.close();
         return sys;
+    }
+
+    public CarSystem[] getAllSystems() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query q = session.createQuery("from CarSystem");
+        List carSystemList = q.list();
+        int carSystemNumber = carSystemList.size();
+        CarSystem[] allCarSystems = new CarSystem[carSystemNumber];
+        for (int i = 0; i < carSystemNumber; i++) {
+            allCarSystems[i] = (CarSystem) carSystemList.get(i);
+        }
+        session.close();
+        return allCarSystems;
     }
 }
 

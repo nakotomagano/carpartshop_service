@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.sun.xml.txw2.annotation.XmlElement;
+
 /**
  * Part class consists of information such as:
  * it's manufacturer, car system it belongs to, price, etc.
@@ -16,6 +18,7 @@ import javax.persistence.Table;
  * Oct 7, 2017
  *
  */
+@XmlElement
 @Entity
 @Table(name = "carpart")
 public class Part {

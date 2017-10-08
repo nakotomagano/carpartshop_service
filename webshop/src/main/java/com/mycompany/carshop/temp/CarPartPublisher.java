@@ -9,7 +9,7 @@ public class CarPartPublisher {
     
 public static void main(String[] args) {
         Endpoint.publish(
-           "http://localhost:8089/carshopservice", 
+           "http://localhost:8091/carshopservice", 
            new ServiceImpl());
     }
 
