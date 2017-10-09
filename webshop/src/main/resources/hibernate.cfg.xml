@@ -18,5 +18,6 @@
     <mapping class="com.mycompany.carshop.model.beans.Model"/>
     <mapping class="com.mycompany.carshop.model.beans.Member"/>
     <mapping class="com.mycompany.carshop.model.beans.Role"/>
+    <mapping class="com.mycompany.carshop.model.beans.Deal"/>
 </session-factory>
 </hibernate-configuration>

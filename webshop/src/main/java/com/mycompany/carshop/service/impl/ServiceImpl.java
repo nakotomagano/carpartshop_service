@@ -1,15 +1,16 @@
 package com.mycompany.carshop.service.impl;
 
-import java.util.List;
-
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
 import com.mycompany.carshop.model.beans.CarSystem;
+import com.mycompany.carshop.model.beans.Deal;
+import com.mycompany.carshop.model.beans.Manufacturer;
 import com.mycompany.carshop.model.beans.Member;
 import com.mycompany.carshop.model.beans.Part;
 import com.mycompany.carshop.repository.CarSystemDAO;
+import com.mycompany.carshop.repository.DealDao;
 import com.mycompany.carshop.repository.MemberDao;
 import com.mycompany.carshop.repository.PartDao;
 import com.mycompany.carshop.service.Service;
@@ -30,7 +31,8 @@ public class ServiceImpl implements Service {
      * @return Part
      */
     @WebMethod
-    public Part getPart(final int partId) {
+    public Part getPartById(final int partId) {
+
         PartDao partDao = new PartDao();
         return partDao.getPartById(partId);
     }
@@ -51,7 +53,7 @@ public class ServiceImpl implements Service {
      * @return CarSystem
      */
     @WebMethod
-    public CarSystem getSystem(final int systemId) {
+    public CarSystem getSystemById(final int systemId) {
         CarSystemDAO carSysDao = new CarSystemDAO();
         return carSysDao.getSystemById(systemId);
     }
@@ -83,5 +85,38 @@ public class ServiceImpl implements Service {
     public Member[] getAllMembers() {
         MemberDao memberDao = new MemberDao();
         return memberDao.getAllMembers();
+    }
+
+    /**
+     * Gets deal from database with given id.
+     */
+    @WebMethod
+    public Deal getDealById(int id) {
+        DealDao dealDao = new DealDao();
+        return dealDao.getDealById(id);        
+    }
+
+    /**
+     * Gets all parts by manufacturer.
+     */
+    @WebMethod
+    public Part[] getAllPartsByManufacturer(Manufacturer manufacturer) {
+        PartDao partDao = new PartDao();
+        return partDao.getAllPartsByManufacturer(manufacturer);
+    }
+
+    @WebMethod
+    public Deal[] getDealsByMember(Member member) {
+        DealDao dealDao = new DealDao();
+        return dealDao.getDealsByMember(member);
+    }
+
+    /**
+     * Get all parts from given system.
+     */
+    @WebMethod
+    public Part[] getAllPartsBySystem(CarSystem carSystem) {
+        PartDao partDao = new PartDao();
+        return partDao.getAllPartsBySystem(carSystem);
     }
 }

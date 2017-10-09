@@ -3,10 +3,13 @@ package com.mycompany.carshop.service;
 import java.util.List;
 
 import javax.jws.WebMethod;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlAnyElement;
 
 import com.mycompany.carshop.model.beans.CarSystem;
+import com.mycompany.carshop.model.beans.Deal;
+import com.mycompany.carshop.model.beans.Manufacturer;
 import com.mycompany.carshop.model.beans.Member;
 import com.mycompany.carshop.model.beans.Part;
 
@@ -29,14 +32,32 @@ public interface Service {
      * @return Part
      */
     @WebMethod
-    Part getPart(int partId);
-    
+    @WebResult(name = "Part")
+    Part getPartById(int partId);
+
     /**
      * Gets all parts from database.
      * @return
      */
     @WebMethod
+    @WebResult(name = "AllParts")
     Part[] getAllParts();
+
+    /**
+     * Gets all parts from given manufacturer.
+     * @param manufacturer
+     * @return
+     */
+    @WebMethod
+    Part[] getAllPartsByManufacturer(Manufacturer manufacturer);
+
+    /**
+     * Gets all parts from given carSystem.
+     * @param carSystem
+     * @return
+     */
+    @WebMethod
+    Part[] getAllPartsBySystem(CarSystem carSystem);
 
     /**
      * Gets the CarSystem with given system ID.
@@ -44,16 +65,16 @@ public interface Service {
      * @return CarSystem
      */
     @WebMethod
-    CarSystem getSystem(int systemId);
-    
-    
+    CarSystem getSystemById(int systemId);
+
+
     /**
      * Gets all parts from database.
      * @return
      */
     @WebMethod
     CarSystem[] getAllSystems();
-    
+
     /**
      * Gets member from database with given id.
      * @param id
@@ -61,11 +82,27 @@ public interface Service {
      */
     @WebMethod
     Member getMemberById(int id);
-    
+
     /**
      * Gets all members from database.
      * @return
      */
     @WebMethod
     Member[] getAllMembers();
+
+    /**
+     * Gets deal with given id.
+     * @param id
+     * @return
+     */
+    @WebMethod
+    Deal getDealById(int id);
+
+    /**
+     * Gets all deals for member.
+     * @param member - whose deals we need to return.
+     * @return
+     */
+    @WebMethod
+    Deal[] getDealsByMember(Member member);
 }

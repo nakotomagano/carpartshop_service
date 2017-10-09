@@ -22,3 +22,4 @@ target/
 RemoteSystemsTempFiles/
 Servers/
 .metadata/
+.recommenders/

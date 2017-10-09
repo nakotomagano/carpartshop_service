@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 import com.sun.xml.txw2.annotation.XmlElement;
 
@@ -18,11 +21,11 @@ import com.sun.xml.txw2.annotation.XmlElement;
  * Oct 7, 2017
  *
  */
-@XmlElement
+//@XmlRootElement
+//@XmlType(name = "something")
 @Entity
 @Table(name = "carpart")
 public class Part {
-
     @Id
     @GeneratedValue
     @Column(name = "id_part")
@@ -117,7 +120,7 @@ public class Part {
     }
 
     /**
-     * Prints name of the car part.
+     * Returns name of the car part.
      * @return
      */
     public String printPartName() {
