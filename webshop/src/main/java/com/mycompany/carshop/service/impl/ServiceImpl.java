@@ -2,7 +2,6 @@ package com.mycompany.carshop.service.impl;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
 
 import com.mycompany.carshop.model.beans.CarSystem;
 import com.mycompany.carshop.model.beans.Deal;
@@ -21,10 +20,12 @@ import com.mycompany.carshop.service.Service;
  * Oct 7, 2017
  *
  */
-@WebService
-@SOAPBinding(style = SOAPBinding.Style.RPC)
+@WebService(endpointInterface = "com.mycompany.carshop.service.Service")
 public class ServiceImpl implements Service {
 
+    public ServiceImpl() {
+        super();
+    }
     /**
      * Exposed method for getting part based on it's iD.
      * @param partId - ID of required part.
@@ -93,7 +94,7 @@ public class ServiceImpl implements Service {
     @WebMethod
     public Deal getDealById(int id) {
         DealDao dealDao = new DealDao();
-        return dealDao.getDealById(id);        
+        return dealDao.getDealById(id);
     }
 
     /**

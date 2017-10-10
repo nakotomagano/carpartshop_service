@@ -1,11 +1,9 @@
 package com.mycompany.carshop.service;
 
-import java.util.List;
-
 import javax.jws.WebMethod;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-import javax.xml.bind.annotation.XmlAnyElement;
+import javax.jws.soap.SOAPBinding;
 
 import com.mycompany.carshop.model.beans.CarSystem;
 import com.mycompany.carshop.model.beans.Deal;
@@ -25,6 +23,7 @@ import com.mycompany.carshop.model.beans.Part;
  *
  */
 @WebService
+@SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface Service {
     /**
      * Gets the part with given part ID.
@@ -126,7 +125,7 @@ public interface Service {
      */
     @WebMethod
     void addNewDeal(Deal deal);
-    
+
     /**
      * Returns member with given email and password.
      * If there is no user with given credentials, nullpointerexception is thrown.
