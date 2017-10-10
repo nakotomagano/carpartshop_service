@@ -3,21 +3,24 @@
 "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory>
-  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/carpartshoptest</property>
-  <property name="hibernate.connection.username">root</property>
-  <property name="hibernate.connection.password">mojpassword</property>
-  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  <property name="hibernate.default_schema">carpartshoptest</property>
-  <property name="show_sql">true</property>
-    <mapping package="com.mycompany.carshop.model.beans"/>
-    <mapping class="com.mycompany.carshop.model.beans.Part"/>
-    <mapping class="com.mycompany.carshop.model.beans.CarSystem"/>
-    <mapping class="com.mycompany.carshop.model.beans.Manufacturer"/>
-    <mapping class="com.mycompany.carshop.model.beans.Model"/>
-    <mapping class="com.mycompany.carshop.model.beans.Member"/>
-    <mapping class="com.mycompany.carshop.model.beans.Role"/>
-    <mapping class="com.mycompany.carshop.model.beans.Deal"/>
-</session-factory>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/carpartshoptest</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">mojpassword</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.default_schema">carpartshoptest</property>
+		<property name="show_sql">true</property>
+		<property name="hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">validate</property>
+		<property name="show_sql">true</property>
+		<mapping package="com.mycompany.carshop.model.beans" />
+		<mapping class="com.mycompany.carshop.model.beans.Part" />
+		<mapping class="com.mycompany.carshop.model.beans.CarSystem" />
+		<mapping class="com.mycompany.carshop.model.beans.Manufacturer" />
+		<mapping class="com.mycompany.carshop.model.beans.Model" />
+		<mapping class="com.mycompany.carshop.model.beans.Member" />
+		<mapping class="com.mycompany.carshop.model.beans.Role" />
+		<mapping class="com.mycompany.carshop.model.beans.Deal" />
+	</session-factory>
 </hibernate-configuration>

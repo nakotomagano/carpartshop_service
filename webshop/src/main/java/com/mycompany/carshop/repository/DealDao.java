@@ -2,11 +2,16 @@ package com.mycompany.carshop.repository;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mycompany.carshop.model.beans.Deal;
 import com.mycompany.carshop.model.beans.Member;
+import com.mycompany.carshop.model.beans.Part;
 import com.mycompany.carshop.utils.HibernateUtil;
 /**
  * Repository class for dealing with DB informations related to concluded deals/purchases.
@@ -15,6 +20,7 @@ import com.mycompany.carshop.utils.HibernateUtil;
  *
  */
 public class DealDao {
+    private static Logger log = LoggerFactory.getLogger(DealDao.class);
 
     /**
      * Gets the Deal from DB based on given parameter - ID of the deal.
@@ -28,9 +34,7 @@ public class DealDao {
         String hql = "FROM Deal d WHERE dealId = :dealId";
         Query query = session.createQuery(hql);
         query.setParameter("dealId", dealId);
-
-        List results = query.list();
-        deal = (Deal) results.get(0);
+        deal = (Deal) query.uniqueResult();
         session.close();
         return deal;
     }
@@ -56,5 +60,27 @@ public class DealDao {
         }
 
         return allDealsFromMember;
+    }
+
+    public void addNewDeal (Deal deal) {
+      //TODO: Check if all necessary fields are populated.
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.flush();
+        Transaction t = session.beginTransaction();
+        try {
+            log.info("Step 4: saving deal");
+            session.save(deal);
+            log.info("Step 5: committing transaction");
+            t.commit();
+        } catch (HibernateException ex) {
+            if (t != null) {
+                t.rollback();
+                log.error("Hibernate Exception while saving new Deal");
+                ex.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
     }
 }

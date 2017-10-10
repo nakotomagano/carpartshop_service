@@ -119,4 +119,54 @@ public class ServiceImpl implements Service {
         PartDao partDao = new PartDao();
         return partDao.getAllPartsBySystem(carSystem);
     }
+
+    /**
+     * Insert new car system.
+     */
+    @WebMethod
+    public void addNewSystem(CarSystem carSystem) {
+        CarSystemDAO carSystemDao = new CarSystemDAO();
+        try {
+            carSystemDao.addNewSystem(carSystem);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            System.out.println("Order could not be placed!");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Inserts new part in DB.
+     */
+    @WebMethod
+    public void addNewPart(Part part) {
+        PartDao partDao = new PartDao();
+        try {
+            partDao.addNewPart(part);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            System.out.println("Part could not be inserted!");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Place new order.
+     */
+    @WebMethod
+    public void addNewDeal(Deal deal){
+        DealDao dealDao = new DealDao();
+        try {
+            dealDao.addNewDeal(deal);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            System.out.println("Order could not be placed!");
+            e.printStackTrace();
+        }
+    }
+    @WebMethod
+    public Member getMemberByIdAndPassword(String email, String password) {
+        MemberDao memberDao = new MemberDao();
+        return memberDao.getMemberByIdAndPassword(email, password);
+    }
 }

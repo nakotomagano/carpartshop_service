@@ -105,4 +105,35 @@ public interface Service {
      */
     @WebMethod
     Deal[] getDealsByMember(Member member);
+
+    /**
+     * Insert new car system.
+     * @param carSystem
+     */
+    @WebMethod
+    void addNewSystem(CarSystem carSystem);
+
+    /**
+     * Insert new part in database.
+     * @param part
+     */
+    @WebMethod
+    void addNewPart(Part part);
+
+    /**
+     * Create new deal.
+     * @param deal
+     */
+    @WebMethod
+    void addNewDeal(Deal deal);
+    
+    /**
+     * Returns member with given email and password.
+     * If there is no user with given credentials, nullpointerexception is thrown.
+     * @param email
+     * @param password
+     * @return
+     */
+    @WebMethod
+    Member getMemberByIdAndPassword(String email, String password);
 }

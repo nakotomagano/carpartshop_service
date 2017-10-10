@@ -3,6 +3,7 @@ package com.mycompany.carshop.model.beans;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,13 +22,12 @@ import com.sun.xml.txw2.annotation.XmlElement;
  * Oct 7, 2017
  *
  */
-//@XmlRootElement
-//@XmlType(name = "something")
+
 @Entity
 @Table(name = "carpart")
 public class Part {
     @Id
-    @GeneratedValue
+    @GeneratedValue //(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_part")
     private int partId;
     @Column(name = "part_name")
@@ -42,7 +42,7 @@ public class Part {
     @JoinColumn(name = "id_model")
     private Model model;
     @JoinColumn(name = "price")
-    private double price;
+    private float price;
     @JoinColumn(name = "quantity")
     private int quantity;
 
@@ -50,7 +50,7 @@ public class Part {
 
     }
 
-    public Part(String partName, CarSystem cs, Manufacturer m, double price, int quantity) {
+    public Part(String partName, CarSystem cs, Manufacturer m, float price, int quantity) {
         setPartName(partName);
         setCarSystem(cs);
         setMan(m);
@@ -103,11 +103,11 @@ public class Part {
         this.model = model;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

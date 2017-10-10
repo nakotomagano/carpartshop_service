@@ -2,8 +2,12 @@ package com.mycompany.carshop.repository;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mycompany.carshop.model.beans.CarSystem;
 import com.mycompany.carshop.model.beans.Manufacturer;
@@ -16,6 +20,7 @@ import com.mycompany.carshop.utils.HibernateUtil;
  *
  */
 public class PartDao {
+    private static Logger log = LoggerFactory.getLogger(PartDao.class);
     /**
      * Gets the Part from DB based on given parameter - ID of the part.
      * @param partId - id of the wanted part.
@@ -27,10 +32,7 @@ public class PartDao {
         String hql = "FROM Part p WHERE partId = :partId";
         Query query = session.createQuery(hql);
         query.setParameter("partId", partId);
-
-        List results = query.list();
-        //TODO: Find better way to get single result!
-        p = (Part) results.get(0);
+        p = (Part) query.uniqueResult();
         session.close();
         return p;
     }
@@ -97,5 +99,31 @@ public class PartDao {
         }
         session.close();
         return allPartsFromSystem;
+    }
+
+    /**
+     * Inserts new part in database.
+     * @param part
+     */
+    public void addNewPart(Part part) {
+        //TODO: Check if all necessary fields are populated.
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.flush();
+        Transaction t = session.beginTransaction();
+        try {
+            log.info("Step 4: saving part");
+            session.save(part);
+            log.info("Step 5: committing transaction");
+            t.commit();
+        } catch (HibernateException ex) {
+            if (t != null) {
+                t.rollback();
+                log.error("Hibernate Exception while saving new Part");
+                ex.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
     }
 }
