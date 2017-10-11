@@ -2,7 +2,7 @@ package com.mycompany.carshop.temp;
 
 import javax.xml.ws.Endpoint;
 
-import com.mycompany.carshop.service.impl.ServiceImpl;
+import com.mycompany.carshop.port.impl.CarShopPort;
 
 
 public class CarPartPublisher {
@@ -13,7 +13,7 @@ public class CarPartPublisher {
      */
     public static void main(String[] args) {
         Endpoint.publish(
-                "http://localhost:8090/carshopservice", new ServiceImpl());
+                "http://localhost:8088/carshopservice", new CarShopPort());
     }
 
 }

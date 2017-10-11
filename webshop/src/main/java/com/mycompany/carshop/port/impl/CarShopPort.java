@@ -1,4 +1,4 @@
-package com.mycompany.carshop.service.impl;
+package com.mycompany.carshop.port.impl;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -8,11 +8,11 @@ import com.mycompany.carshop.model.beans.Deal;
 import com.mycompany.carshop.model.beans.Manufacturer;
 import com.mycompany.carshop.model.beans.Member;
 import com.mycompany.carshop.model.beans.Part;
+import com.mycompany.carshop.port.WebShopPort;
 import com.mycompany.carshop.repository.CarSystemDAO;
 import com.mycompany.carshop.repository.DealDao;
 import com.mycompany.carshop.repository.MemberDao;
 import com.mycompany.carshop.repository.PartDao;
-import com.mycompany.carshop.service.Service;
 
 /**
  * Implementation of service interface.
@@ -20,10 +20,10 @@ import com.mycompany.carshop.service.Service;
  * Oct 7, 2017
  *
  */
-@WebService(endpointInterface = "com.mycompany.carshop.service.Service")
-public class ServiceImpl implements Service {
+@WebService(endpointInterface = "com.mycompany.carshop.port.WebShopPort")
+public class CarShopPort implements WebShopPort {
 
-    public ServiceImpl() {
+    public CarShopPort() {
         super();
     }
     /**
@@ -166,8 +166,8 @@ public class ServiceImpl implements Service {
         }
     }
     @WebMethod
-    public Member getMemberByIdAndPassword(String email, String password) {
+    public Member getMemberByEmailAndPassword(String email, String password) {
         MemberDao memberDao = new MemberDao();
-        return memberDao.getMemberByIdAndPassword(email, password);
+        return memberDao.getMemberByEmailAndPassword(email, password);
     }
 }

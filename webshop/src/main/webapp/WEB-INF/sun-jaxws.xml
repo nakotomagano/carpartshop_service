@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
-	<endpoint name="Service" implementation="com.mycompany.carshop.service.impl.ServiceImpl"
+	<endpoint name="WebShopPort" implementation="com.mycompany.carshop.port.impl.CarShopPort"
 		url-pattern="/carparts"></endpoint>
 </endpoints>

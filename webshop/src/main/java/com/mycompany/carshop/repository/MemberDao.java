@@ -60,7 +60,7 @@ public class MemberDao {
      * @param password
      * @return
      */
-    public Member getMemberByIdAndPassword(String email, String password) {
+    public Member getMemberByEmailAndPassword(String email, String password) {
         Member member = new Member();
         Session session = HibernateUtil.getSessionFactory().openSession();
         String hql = "FROM Member m WHERE email = :email and password = :password";

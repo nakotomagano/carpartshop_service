@@ -1,4 +1,4 @@
-package com.mycompany.carshop.service;
+package com.mycompany.carshop.port;
 
 import javax.jws.WebMethod;
 import javax.jws.WebResult;
@@ -24,7 +24,7 @@ import com.mycompany.carshop.model.beans.Part;
  */
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-public interface Service {
+public interface WebShopPort {
     /**
      * Gets the part with given part ID.
      * @param partId - id of wanted part.
@@ -134,5 +134,5 @@ public interface Service {
      * @return
      */
     @WebMethod
-    Member getMemberByIdAndPassword(String email, String password);
+    Member getMemberByEmailAndPassword(String email, String password);
 }
