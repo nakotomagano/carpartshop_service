@@ -9,7 +9,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 
 import com.mycompany.carshop.model.beans.CarSystem;
 import com.mycompany.carshop.utils.HibernateUtil;
@@ -20,7 +19,7 @@ import com.mycompany.carshop.utils.HibernateUtil;
  */
 public class CarSystemDAO {
     private static Logger log = LoggerFactory.getLogger(CarSystemDAO.class);
-    
+
     /**
      * Gets the CarSystem from DB based on given parameter - ID of the system.
      * @param systemId - id of the Car System required.
@@ -59,7 +58,7 @@ public class CarSystemDAO {
         session.close();
         return allCarSystems;
     }
-    
+
     /**
      * Inserts new car system into db.
      * @param carSystem

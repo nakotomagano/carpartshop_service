@@ -5,11 +5,11 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 
-    private static final SessionFactory sessionFactory = buildSessionFactory();
-/**
- * Builds hibernate session.
- * @return SessionFactory
- */
+    private static final SessionFactory SESSION_FACTORY = buildSessionFactory();
+    /**
+     * Builds hibernate session.
+     * @return SessionFactory
+     */
     private static SessionFactory buildSessionFactory() {
         try {
             // Create the SessionFactory from hibernate.cfg.xml
@@ -26,7 +26,7 @@ public class HibernateUtil {
      * @return sessionFactory
      */
     public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+        return SESSION_FACTORY;
     }
 
     /**

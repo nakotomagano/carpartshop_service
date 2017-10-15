@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import com.mycompany.carshop.model.beans.Deal;
 import com.mycompany.carshop.model.beans.Member;
-import com.mycompany.carshop.model.beans.Part;
 import com.mycompany.carshop.utils.HibernateUtil;
 /**
  * Repository class for dealing with DB informations related to concluded deals/purchases.
@@ -62,7 +61,7 @@ public class DealDao {
         return allDealsFromMember;
     }
 
-    public void addNewDeal (Deal deal) {
+    public void addNewDeal(Deal deal) {
       //TODO: Check if all necessary fields are populated.
 
         Session session = HibernateUtil.getSessionFactory().openSession();

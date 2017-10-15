@@ -5,6 +5,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
+import com.mycompany.carshop.fault.AuthenticationFault;
 import com.mycompany.carshop.model.beans.CarSystem;
 import com.mycompany.carshop.model.beans.Deal;
 import com.mycompany.carshop.model.beans.Manufacturer;
@@ -23,7 +24,7 @@ import com.mycompany.carshop.model.beans.Part;
  *
  */
 @WebService
-@SOAPBinding(style = SOAPBinding.Style.RPC)
+@SOAPBinding(style = SOAPBinding.Style.RPC) // ;style = SOAPBinding.Style.DOCUMENT, use=Use.LITERAL
 public interface WebShopPort {
     /**
      * Gets the part with given part ID.
@@ -132,7 +133,8 @@ public interface WebShopPort {
      * @param email
      * @param password
      * @return
+     * @throws AuthenticationFault
      */
     @WebMethod
-    Member getMemberByEmailAndPassword(String email, String password);
+    Member getMemberByEmailAndPassword(String email, String password); // throws NullPointerException throws AuthenticationFault
 }

@@ -4,7 +4,11 @@ import javax.xml.ws.Endpoint;
 
 import com.mycompany.carshop.port.impl.CarShopPort;
 
-
+/**
+ * Starts the app as standalone. Run as --> Java Application.
+ * @author Veljko Matovic
+ * Oct 15, 2017
+ */
 public class CarPartPublisher {
 
     /**

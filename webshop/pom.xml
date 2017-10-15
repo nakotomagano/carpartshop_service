@@ -103,8 +103,67 @@
 			<version>1.2.16</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.2.3</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>webshop</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.9</version>
+					<executions>
+						<execution>
+							<id>add-source</id>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>add-source</goal>
+							</goals>
+							<configuration>
+								<sources>
+									<source>${basedir}/target/generated/src/main/java</source>
+								</sources>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jaxws-maven-plugin</artifactId>
+					<version>1.12</version>
+					<configuration>
+						<wsdlDirectory>${basedir}/src/main/resources/wsdl</wsdlDirectory>
+						<packageName>com.raps.code.generate.ws</packageName>
+						<keep>true</keep>
+						<sourceDestDir>${basedir}/target/generated/src/main/java</sourceDestDir>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>wsimport</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>
