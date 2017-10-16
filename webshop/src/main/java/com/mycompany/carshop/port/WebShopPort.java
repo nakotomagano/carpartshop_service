@@ -154,4 +154,13 @@ public interface WebShopPort {
      */
     @WebMethod
     boolean deletePart(Part part);
+
+    /**
+     * Gets all partsby given car system and manufacturer.
+     * @param carSystem
+     * @param manufacturer
+     * @return all parts for given criteria in a list.
+     */
+    @WebMethod
+    Part[] getPartsByCarSystemAndManufacturer(CarSystem carSystem, Manufacturer manufacturer);
 }

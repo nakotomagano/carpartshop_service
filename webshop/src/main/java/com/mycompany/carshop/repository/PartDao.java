@@ -139,4 +139,29 @@ public class PartDao {
         t.commit();
         session.close();
     }
+
+/**
+ * Returns all parts manufactured by given manufacturer and which belong to a given car system.
+ * @param carSystem
+ * @param manufacturer
+ * @return
+ */
+    public Part[] getPartsByCarSystemAndManufacturer(CarSystem carSystem, Manufacturer manufacturer) {
+        Part p = new Part();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String hql = "select distinct p FROM Part p join p.system s join p.man m where s.systemId = :sysId and m.manId = :manId";
+        Query query = session.createQuery(hql);
+        query.setParameter("sysId", carSystem.getSystemId());
+        query.setParameter("manId", manufacturer.getManId());
+
+        List results = query.list();
+        int partNumber = results.size();
+        Part[] allPartsFromSystem = new Part[partNumber];
+        for (int i = 0; i < partNumber; i++) {
+            p = (Part) results.get(i);
+            allPartsFromSystem[i] = p;
+        }
+        session.close();
+        return allPartsFromSystem;
+    }
 }

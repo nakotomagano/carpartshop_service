@@ -26,10 +26,10 @@ import com.mycompany.carshop.repository.PartDao;
 // @HandlerChain(file = "com/mycompany/carshop/handler/handler-chain.xml")
 public class CarShopPort implements WebShopPort {
 
-    PartDao partDao = new PartDao();
-    MemberDao memberDao = new MemberDao();
-    CarSystemDAO carSystemDao = new CarSystemDAO();
-    DealDao dealDao = new DealDao();
+    private PartDao partDao = new PartDao();
+    private MemberDao memberDao = new MemberDao();
+    private CarSystemDAO carSystemDao = new CarSystemDAO();
+    private DealDao dealDao = new DealDao();
 
     public CarShopPort() {
         super();
@@ -203,4 +203,15 @@ public class CarShopPort implements WebShopPort {
         partDao.deletePart(part);
         return true;
     }
+
+    /**
+     * Gets all parts by given car system and manufacturer.
+     */
+    @Override
+    @WebMethod
+    public Part[] getPartsByCarSystemAndManufacturer(CarSystem carSystem, Manufacturer manufacturer) {
+        return partDao.getPartsByCarSystemAndManufacturer(carSystem, manufacturer);
+    }
+
+
 }

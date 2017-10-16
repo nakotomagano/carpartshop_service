@@ -29,7 +29,7 @@ public class Part {
     @ManyToOne
     @JoinColumn(name = "id_sys")
     private CarSystem system;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_man")
     private Manufacturer man;
     @OneToOne
