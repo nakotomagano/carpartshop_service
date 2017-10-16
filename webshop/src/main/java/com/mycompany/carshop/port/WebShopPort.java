@@ -11,6 +11,7 @@ import com.mycompany.carshop.model.beans.Deal;
 import com.mycompany.carshop.model.beans.Manufacturer;
 import com.mycompany.carshop.model.beans.Member;
 import com.mycompany.carshop.model.beans.Part;
+import com.mycompany.carshop.model.beans.PartList;
 
 /**
  * Service interface which exposes web methods.
@@ -137,4 +138,12 @@ public interface WebShopPort {
      */
     @WebMethod
     Member getMemberByEmailAndPassword(String email, String password); // throws NullPointerException throws AuthenticationFault
+
+    /**
+     * Inserts list of parts in DB.
+     * @param partList
+     * @return TRUE if insert finishes successfully.
+     */
+    @WebMethod
+    boolean insertParts(PartList partList);
 }

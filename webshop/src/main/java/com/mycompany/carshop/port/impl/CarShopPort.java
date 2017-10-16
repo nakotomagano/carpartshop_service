@@ -8,6 +8,7 @@ import com.mycompany.carshop.model.beans.Deal;
 import com.mycompany.carshop.model.beans.Manufacturer;
 import com.mycompany.carshop.model.beans.Member;
 import com.mycompany.carshop.model.beans.Part;
+import com.mycompany.carshop.model.beans.PartList;
 import com.mycompany.carshop.port.WebShopPort;
 import com.mycompany.carshop.repository.CarSystemDAO;
 import com.mycompany.carshop.repository.DealDao;
@@ -188,5 +189,17 @@ public class CarShopPort implements WebShopPort {
         Member member = new Member();
         member = memberDao.getMemberByEmailAndPassword(email, password);
         return member;
+    }
+
+    /**
+     * Inserts list of parts in DB.
+     */
+    @Override
+    @WebMethod
+    public boolean insertParts(PartList partList) {
+        for (Part part : partList.getParts()) {
+            addNewPart(part);
+        }
+        return true;
     }
 }
