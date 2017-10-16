@@ -26,6 +26,11 @@ import com.mycompany.carshop.repository.PartDao;
 // @HandlerChain(file = "com/mycompany/carshop/handler/handler-chain.xml")
 public class CarShopPort implements WebShopPort {
 
+    PartDao partDao = new PartDao();
+    MemberDao memberDao = new MemberDao();
+    CarSystemDAO carSystemDao = new CarSystemDAO();
+    DealDao dealDao = new DealDao();
+
     public CarShopPort() {
         super();
     }
@@ -37,7 +42,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public Part getPartById(final int partId) {
-        PartDao partDao = new PartDao();
         return partDao.getPartById(partId);
     }
 
@@ -47,7 +51,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public Part[] getAllParts() {
-        PartDao partDao = new PartDao();
         return partDao.getAllParts();
     }
 
@@ -60,8 +63,7 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public CarSystem getSystemById(final int systemId) {
-        CarSystemDAO carSysDao = new CarSystemDAO();
-        return carSysDao.getSystemById(systemId);
+        return carSystemDao.getSystemById(systemId);
     }
 
 
@@ -71,8 +73,7 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public CarSystem[] getAllSystems() {
-        CarSystemDAO carSysDao = new CarSystemDAO();
-        return carSysDao.getAllSystems();
+        return carSystemDao.getAllSystems();
     }
 
     /**
@@ -81,7 +82,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public Member getMemberById(int id) {
-        MemberDao memberDao = new MemberDao();
         return memberDao.getMemberById(id);
     }
 
@@ -91,7 +91,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public Member[] getAllMembers() {
-        MemberDao memberDao = new MemberDao();
         return memberDao.getAllMembers();
     }
 
@@ -101,7 +100,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public Deal getDealById(int id) {
-        DealDao dealDao = new DealDao();
         return dealDao.getDealById(id);
     }
 
@@ -111,14 +109,12 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public Part[] getAllPartsByManufacturer(Manufacturer manufacturer) {
-        PartDao partDao = new PartDao();
         return partDao.getAllPartsByManufacturer(manufacturer);
     }
 
     @Override
     @WebMethod
     public Deal[] getDealsByMember(Member member) {
-        DealDao dealDao = new DealDao();
         return dealDao.getDealsByMember(member);
     }
 
@@ -128,7 +124,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public Part[] getAllPartsBySystem(CarSystem carSystem) {
-        PartDao partDao = new PartDao();
         return partDao.getAllPartsBySystem(carSystem);
     }
 
@@ -138,7 +133,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public void addNewSystem(CarSystem carSystem) {
-        CarSystemDAO carSystemDao = new CarSystemDAO();
         try {
             carSystemDao.addNewSystem(carSystem);
         } catch (Exception e) {
@@ -154,7 +148,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public void addNewPart(Part part) {
-        PartDao partDao = new PartDao();
         try {
             partDao.addNewPart(part);
         } catch (Exception e) {
@@ -170,7 +163,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public void addNewDeal(Deal deal) {
-        DealDao dealDao = new DealDao();
         try {
             dealDao.addNewDeal(deal);
         } catch (Exception e) {
@@ -185,7 +177,6 @@ public class CarShopPort implements WebShopPort {
     @Override
     @WebMethod
     public Member getMemberByEmailAndPassword(String email, String password) { //throws NullPointerException
-        MemberDao memberDao = new MemberDao();
         Member member = new Member();
         member = memberDao.getMemberByEmailAndPassword(email, password);
         return member;
@@ -200,6 +191,16 @@ public class CarShopPort implements WebShopPort {
         for (Part part : partList.getParts()) {
             addNewPart(part);
         }
+        return true;
+    }
+
+    /**
+     * Deletes given part from database.
+     */
+    @Override
+    @WebMethod
+    public boolean deletePart(Part part) {
+        partDao.deletePart(part);
         return true;
     }
 }

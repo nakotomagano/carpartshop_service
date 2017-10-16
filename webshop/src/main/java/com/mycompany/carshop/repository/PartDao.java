@@ -126,4 +126,17 @@ public class PartDao {
             session.close();
         }
     }
+
+    /**
+     * Deletes part from database.
+     * @param part
+     */
+    public void deletePart(Part part) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+
+        session.delete(part);
+        t.commit();
+        session.close();
+    }
 }

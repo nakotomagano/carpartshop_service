@@ -141,9 +141,17 @@ public interface WebShopPort {
 
     /**
      * Inserts list of parts in DB.
-     * @param partList
+     * @param partList - list of parts to be inserted.
      * @return TRUE if insert finishes successfully.
      */
     @WebMethod
     boolean insertParts(PartList partList);
+
+    /**
+     * Deletes part from database.
+     * @param part - part to be deleted.
+     * @return TRUE if deleted successfully.
+     */
+    @WebMethod
+    boolean deletePart(Part part);
 }
