@@ -1,6 +1,5 @@
 package com.mycompany.carshop.port.impl;
 
-import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
@@ -22,7 +21,8 @@ import com.mycompany.carshop.repository.PartDao;
  *
  */
 @WebService(endpointInterface = "com.mycompany.carshop.port.WebShopPort")
-@HandlerChain(file = "com/mycompany/carshop/handler/handler-chain.xml")
+// commented out handler, because basic http authorisation is added. Check Docs folder for more information on both.
+// @HandlerChain(file = "com/mycompany/carshop/handler/handler-chain.xml")
 public class CarShopPort implements WebShopPort {
 
     public CarShopPort() {

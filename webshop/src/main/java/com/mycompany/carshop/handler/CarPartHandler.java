@@ -1,6 +1,5 @@
 package com.mycompany.carshop.handler;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -72,15 +71,8 @@ public class CarPartHandler implements SOAPHandler<SOAPMessageContext> {
 
     @Override
     public Set<QName> getHeaders() {
-        final QName securityHeader = new QName(
-                "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd",
-                "Security",
-                "wsse");
-
-        final HashSet<QName> headers = new HashSet<QName>();
-        headers.add(securityHeader);
-
-        return headers;
+        System.out.println("Server : getHeaders() Begin");
+        return null;
     }
 
     private void generateErrorMessageAndThrowException(SOAPMessage msg, String reason) {

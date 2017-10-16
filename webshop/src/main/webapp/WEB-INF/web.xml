@@ -15,4 +15,26 @@
 		<servlet-name>hello</servlet-name>
 		<url-pattern>/carparts</url-pattern>
 	</servlet-mapping>
+
+	<security-role>
+		<role-name>bigshot</role-name>
+	</security-role>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>WRCollection</web-resource-name>
+			<url-pattern>/carparts/*</url-pattern>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>bigshot</role-name>
+		</auth-constraint>
+		<!-- user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint-->
+	</security-constraint>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
 </web-app>
