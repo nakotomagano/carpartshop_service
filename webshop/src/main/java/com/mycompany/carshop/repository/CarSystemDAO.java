@@ -30,6 +30,7 @@ public class CarSystemDAO {
         CarSystem sys = new CarSystem();
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        //TODO: replace query to return single result
         Query q = session.createQuery("from CarSystem");
         List<Integer> list = q.list();
         for (Iterator iterator = list.iterator(); iterator.hasNext();) {

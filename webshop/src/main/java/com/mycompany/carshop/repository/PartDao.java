@@ -140,12 +140,12 @@ public class PartDao {
         session.close();
     }
 
-/**
- * Returns all parts manufactured by given manufacturer and which belong to a given car system.
- * @param carSystem
- * @param manufacturer
- * @return
- */
+    /**
+     * Returns all parts manufactured by given manufacturer and which belong to a given car system.
+     * @param carSystem
+     * @param manufacturer
+     * @return
+     */
     public Part[] getPartsByCarSystemAndManufacturer(CarSystem carSystem, Manufacturer manufacturer) {
         Part p = new Part();
         Session session = HibernateUtil.getSessionFactory().openSession();

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -15,7 +17,7 @@ import javax.persistence.Table;
  * Oct 7, 2017
  *
  */
-
+@XmlRootElement(name = "system")
 @Entity
 @Table(name = "system")
 public class CarSystem {
@@ -33,7 +35,7 @@ public class CarSystem {
     public int getSystemId() {
         return systemId;
     }
-
+    @XmlElement
     public void setSystemId(int systemId) {
         this.systemId = systemId;
     }
@@ -41,7 +43,7 @@ public class CarSystem {
     public String getSystemName() {
         return systemName;
     }
-
+    @XmlElement
     public void setSystemName(String systemName) {
         this.systemName = systemName;
     }

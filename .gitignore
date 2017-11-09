@@ -24,3 +24,5 @@ Servers/
 .metadata/
 .recommenders/
 CarShopClient/
+predictions*
+RestTest/

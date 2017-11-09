@@ -12,6 +12,7 @@ import com.mycompany.carshop.model.beans.PartList;
 import com.mycompany.carshop.port.WebShopPort;
 import com.mycompany.carshop.repository.CarSystemDAO;
 import com.mycompany.carshop.repository.DealDao;
+import com.mycompany.carshop.repository.ManufacturerDao;
 import com.mycompany.carshop.repository.MemberDao;
 import com.mycompany.carshop.repository.PartDao;
 
@@ -30,6 +31,7 @@ public class CarShopPort implements WebShopPort {
     private MemberDao memberDao = new MemberDao();
     private CarSystemDAO carSystemDao = new CarSystemDAO();
     private DealDao dealDao = new DealDao();
+    private ManufacturerDao manufacturerDao = new ManufacturerDao();
 
     public CarShopPort() {
         super();
@@ -211,6 +213,11 @@ public class CarShopPort implements WebShopPort {
     @WebMethod
     public Part[] getPartsByCarSystemAndManufacturer(CarSystem carSystem, Manufacturer manufacturer) {
         return partDao.getPartsByCarSystemAndManufacturer(carSystem, manufacturer);
+    }
+    @Override
+    @WebMethod
+    public Manufacturer[] getAllManufacturers() {
+        return manufacturerDao.getAllManufacturers();
     }
 
 

@@ -163,4 +163,11 @@ public interface WebShopPort {
      */
     @WebMethod
     Part[] getPartsByCarSystemAndManufacturer(CarSystem carSystem, Manufacturer manufacturer);
+
+    /**
+     * Gets all manufacturers from db.
+     * @return
+     */
+    @WebMethod
+    Manufacturer[] getAllManufacturers();
 }
