@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Manufacturer of car part.
@@ -13,6 +15,7 @@ import javax.persistence.Table;
  * Oct 7, 2017
  *
  */
+@XmlRootElement(name = "manufacturer")
 @Entity
 @Table(name = "manufacturer")
 public class Manufacturer {
@@ -28,6 +31,7 @@ public class Manufacturer {
 
     }
 
+    @XmlElement
     public int getManId() {
         return manId;
     }
@@ -36,6 +40,7 @@ public class Manufacturer {
         this.manId = manId;
     }
 
+    @XmlElement
     public String getManName() {
         return manName;
     }

@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Oct 7, 2017
  *
  */
-@XmlRootElement(name = "system")
+@XmlRootElement(name = "carSystem")
 @Entity
 @Table(name = "system")
 public class CarSystem {

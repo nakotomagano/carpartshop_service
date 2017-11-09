@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Model of car part.
@@ -13,6 +15,7 @@ import javax.persistence.Table;
  * Oct 7, 2017
  *
  */
+@XmlRootElement(name = "model")
 @Entity
 @Table(name = "model")
 public class Model {
@@ -27,6 +30,7 @@ public class Model {
 
     }
 
+    @XmlElement
     public int getModelId() {
         return modelId;
     }
@@ -35,6 +39,7 @@ public class Model {
         this.modelId = modelId;
     }
 
+    @XmlElement
     public String getModelName() {
         return modelName;
     }

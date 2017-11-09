@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.carshop.model.beans.CarSystem;
+import com.mycompany.carshop.model.beans.Manufacturer;
 import com.mycompany.carshop.model.beans.Member;
 import com.mycompany.carshop.model.beans.Part;
 import com.mycompany.carshop.repository.CarSystemDAO;
@@ -155,7 +156,29 @@ public class RestService {
 
 
     //Part:
-
+/* example for testing addPartJson:
+ * 1. in postman enter http://localhost:8080/webshop/rest/parts/json/add/part
+ * 2. select POST
+ * 3. add header : Key: Content-Type, Value: application/json
+ * 4. add body (raw):
+        {
+            "partName": "Drum brake",
+            "man": {
+                "manId": 1,
+                "manName": "FIAT"
+            },
+            "model": {
+                "modelId": 2,
+                "modelName": "Mgh34-5"
+            },
+            "price": 29.9,
+            "quantity": 20,
+            "carSystem": {
+                "systemId": 1,
+                "systemName": "Brake System"
+            }
+        }
+ */
     @POST
     @Path("/parts/json/add/{part}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -174,12 +197,27 @@ public class RestService {
 
         JSONObject jsObj = new JSONObject(crunchifyBuilder.toString());
         Part p = new Part();
-
+        //name:
         String partName = jsObj.getString("partName");
         p.setPartName(partName);
-
+        //price:
         float price = jsObj.getBigDecimal("price").floatValue();
         p.setPrice(price);
+        //CarSystem:
+        CarSystem carSystem = new CarSystem();
+        JSONObject jsCarSystem = jsObj.getJSONObject("carSystem");
+        int systemId = jsCarSystem.getInt("systemId");
+        carSystem.setSystemId(systemId);
+        p.setCarSystem(carSystem);
+        //Manufacturer:
+        Manufacturer manufacturer = new Manufacturer();
+        JSONObject jsManufacturer = jsObj.getJSONObject("man");
+        int manufacturerId = jsManufacturer.getInt("manId");
+        manufacturer.setManId(manufacturerId);
+        p.setMan(manufacturer);
+        //quantity
+        int quantity = jsObj.getInt("quantity");
+        p.setQuantity(quantity);
 
         PartDao partDao = new PartDao();
         partDao.addNewPart(p);
