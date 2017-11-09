@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Part class consists of information such as:
@@ -16,7 +18,7 @@ import javax.persistence.Table;
  * Oct 7, 2017
  *
  */
-
+@XmlRootElement(name = "part")
 @Entity
 @Table(name = "carpart")
 public class Part {
@@ -65,6 +67,7 @@ public class Part {
         this.partId = partId;
     }
 
+    @XmlElement
     public String getPartName() {
         return partName;
     }
@@ -73,6 +76,7 @@ public class Part {
         this.partName = partName;
     }
 
+    @XmlElement
     public CarSystem getCarSystem() {
         return system;
     }
@@ -81,6 +85,7 @@ public class Part {
         this.system = system;
     }
 
+    @XmlElement
     public Manufacturer getMan() {
         return man;
     }
@@ -89,6 +94,7 @@ public class Part {
         this.man = man;
     }
 
+    @XmlElement
     public Model getModel() {
         return model;
     }
@@ -97,6 +103,7 @@ public class Part {
         this.model = model;
     }
 
+    @XmlElement
     public float getPrice() {
         return price;
     }
@@ -105,6 +112,7 @@ public class Part {
         this.price = price;
     }
 
+    @XmlElement
     public int getQuantity() {
         return quantity;
     }

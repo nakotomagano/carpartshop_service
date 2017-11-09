@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Member class represents person registered on web-site
@@ -16,6 +18,7 @@ import javax.persistence.Table;
  * Oct 7, 2017
  *
  */
+@XmlRootElement(name = "member")
 @Entity
 @Table(name = "member")
 public class Member {
@@ -54,12 +57,10 @@ public class Member {
 
     }
 
-
-
+    @XmlElement
     public int getMemberId() {
         return memberId;
     }
-
 
 
     public void setMemberId(int memberId) {
@@ -67,6 +68,7 @@ public class Member {
     }
 
 
+    @XmlElement
     public String getFirstName() {
         return firstName;
     }
@@ -75,6 +77,7 @@ public class Member {
         this.firstName = firstName;
     }
 
+    @XmlElement
     public String getLastName() {
         return lastName;
     }
@@ -83,6 +86,7 @@ public class Member {
         this.lastName = lastName;
     }
 
+    @XmlElement
     public String getAddress() {
         return address;
     }
@@ -91,6 +95,7 @@ public class Member {
         this.address = address;
     }
 
+    @XmlElement
     public String getPhone() {
         return phone;
     }
@@ -99,6 +104,7 @@ public class Member {
         this.phone = phone;
     }
 
+    @XmlElement
     public String getEmail() {
         return email;
     }
@@ -107,6 +113,7 @@ public class Member {
         this.email = email;
     }
 
+    @XmlElement
     public float getMoney() {
         return money;
     }
@@ -115,6 +122,7 @@ public class Member {
         this.money = money;
     }
 
+    @XmlElement
     public String getPassword() {
         return password;
     }
@@ -125,6 +133,7 @@ public class Member {
 
 
 
+    @XmlElement
     public Role getRole() {
         return role;
     }

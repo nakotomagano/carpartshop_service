@@ -32,18 +32,18 @@ public class CarSystem {
 
     }
 
+    @XmlElement
     public int getSystemId() {
         return systemId;
     }
-    @XmlElement
     public void setSystemId(int systemId) {
         this.systemId = systemId;
     }
 
+    @XmlElement
     public String getSystemName() {
         return systemName;
     }
-    @XmlElement
     public void setSystemName(String systemName) {
         this.systemName = systemName;
     }
