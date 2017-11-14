@@ -1,5 +1,7 @@
 package com.mycompany.carshop.model.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Part class consists of information such as:
- * it's manufacturer, car system it belongs to, price, etc.
+ * it's manufacturer, car carSystem it belongs to, price, etc.
  * @author Veljko Matovic
  * Oct 7, 2017
  *
@@ -21,7 +23,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "part")
 @Entity
 @Table(name = "carpart")
-public class Part {
+public class Part implements Serializable {
+
+    private static final long serialVersionUID = 8409456825136786862L;
+
     @Id
     @GeneratedValue //(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_part")
@@ -30,7 +35,7 @@ public class Part {
     private String partName;
     @ManyToOne
     @JoinColumn(name = "id_sys")
-    private CarSystem system;
+    private CarSystem carSystem;
     @ManyToOne
     @JoinColumn(name = "id_man")
     private Manufacturer man;
@@ -78,11 +83,11 @@ public class Part {
 
     @XmlElement
     public CarSystem getCarSystem() {
-        return system;
+        return carSystem;
     }
 
-    public void setCarSystem(CarSystem system) {
-        this.system = system;
+    public void setCarSystem(CarSystem carSystem) {
+        this.carSystem = carSystem;
     }
 
     @XmlElement

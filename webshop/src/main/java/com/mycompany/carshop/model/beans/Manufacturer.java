@@ -1,5 +1,7 @@
 package com.mycompany.carshop.model.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +20,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "manufacturer")
 @Entity
 @Table(name = "manufacturer")
-public class Manufacturer {
+public class Manufacturer implements Serializable {
+
+    private static final long serialVersionUID = 820561643817122817L;
 
     @Id
     @GeneratedValue

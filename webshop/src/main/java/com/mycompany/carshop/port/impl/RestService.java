@@ -1,9 +1,5 @@
 package com.mycompany.carshop.port.impl;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.MatrixParam;
@@ -15,11 +11,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.json.JSONObject;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.carshop.model.beans.CarSystem;
-import com.mycompany.carshop.model.beans.Manufacturer;
 import com.mycompany.carshop.model.beans.Member;
 import com.mycompany.carshop.model.beans.Part;
 import com.mycompany.carshop.repository.CarSystemDAO;
@@ -29,11 +22,12 @@ import com.mycompany.carshop.repository.PartDao;
 @Path("/")
 public class RestService {
 
-    public RestService() {}
+    public RestService() {
+    }
 
-    //GET:
+    // GET:
 
-    //Car System:
+    // Car System:
     @GET
     @Path("/systems/{id: \\d+}")
     @Produces("text/plain")
@@ -44,24 +38,29 @@ public class RestService {
 
     @GET
     @Path("/systems/xml/carSystem/{id: \\d+}")
-    @Produces({MediaType.APPLICATION_XML})
+    @Produces({ MediaType.APPLICATION_XML })
     public CarSystem getSystemXml(@PathParam("id") int id) {
         CarSystemDAO csDao = new CarSystemDAO();
         return csDao.getSystemById(id);
     }
 
-    //Matrix param example:
+    // Matrix param example:
+    // test url:
+    // http://localhost:8080/webshop/rest/systems/query/xml/user;email=veljko;password=veljko1
     @GET
     @Path("/systems/query/xml/user")
-    @Produces({MediaType.APPLICATION_XML})
+    @Produces({ MediaType.APPLICATION_XML })
     public Member getUserMatrixXml(@MatrixParam("email") String email, @MatrixParam("password") String password) {
         MemberDao memberDao = new MemberDao();
         return memberDao.getMemberByEmailAndPassword(email, password);
     }
-    //Query param example:
+
+    // Query param example:
+    // test url:
+    // http://localhost:8080/webshop/rest/systems/query/xml/carSystem?id=2
     @GET
     @Path("/systems/query/xml/carSystem")
-    @Produces({MediaType.APPLICATION_XML})
+    @Produces({ MediaType.APPLICATION_XML })
     public CarSystem getSystemQueryXml(@QueryParam("id") int id) {
         CarSystemDAO csDao = new CarSystemDAO();
         return csDao.getSystemById(id);
@@ -69,7 +68,7 @@ public class RestService {
 
     @GET
     @Path("/systems/xml/allSystems")
-    @Produces({MediaType.APPLICATION_XML})
+    @Produces({ MediaType.APPLICATION_XML })
     public CarSystem[] getAllCarSystemsXml() {
         CarSystemDAO csDao = new CarSystemDAO();
         return csDao.getAllSystems();
@@ -77,16 +76,17 @@ public class RestService {
 
     @GET
     @Path("/systems/json/carSystem/{id: \\d+}")
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces({ MediaType.APPLICATION_JSON })
     public CarSystem getCarSystemJson(@PathParam("id") int id) {
         CarSystemDAO csDao = new CarSystemDAO();
         CarSystem carSystem = csDao.getSystemById(id);
         String jsonCarSystem = toJson(carSystem);
         return carSystem;
     }
+
     @GET
     @Path("/systems/json/allSystems")
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces({ MediaType.APPLICATION_JSON })
     public CarSystem[] getAllCarSystemsJson() {
         CarSystemDAO csDao = new CarSystemDAO();
         return csDao.getAllSystems();
@@ -97,20 +97,22 @@ public class RestService {
         String json = "If you see this, there's a problem.";
         try {
             json = new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) { }
+        } catch (Exception e) {
+        }
         return json;
     }
 
     @GET
     @Path("/systems/xml/part/{id: \\d+}")
-    @Produces({MediaType.APPLICATION_XML})
+    @Produces({ MediaType.APPLICATION_XML })
     public Part getPartXml(@PathParam("id") int id) {
         PartDao partDao = new PartDao();
         return partDao.getPartById(id);
     }
+
     @GET
     @Path("/systems/xml/allParts")
-    @Produces({MediaType.APPLICATION_XML})
+    @Produces({ MediaType.APPLICATION_XML })
     public Part[] getAllPartsXml() {
         PartDao partDao = new PartDao();
         return partDao.getAllParts();
@@ -118,24 +120,24 @@ public class RestService {
 
     @GET
     @Path("/systems/json/part/{id: \\d+}")
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces({ MediaType.APPLICATION_JSON })
     public Part getPartJson(@PathParam("id") int id) {
         PartDao partDao = new PartDao();
         Part part = partDao.getPartById(id);
         return part;
     }
+
     @GET
     @Path("/systems/json/allParts")
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces({ MediaType.APPLICATION_JSON })
     public Part[] getAllPartsJson() {
         PartDao partDao = new PartDao();
         return partDao.getAllParts();
     }
 
+    // POSTS:
 
-    //POSTS:
-
-    //Car System:
+    // Car System:
     @POST
     @Path("/systems/add/{systemName}")
     @Produces("text/plain")
@@ -154,75 +156,29 @@ public class RestService {
         return Response.ok(msg, "text/plain").build();
     }
 
-
-    //Part:
-/* example for testing addPartJson:
- * 1. in postman enter http://localhost:8080/webshop/rest/parts/json/add/part
- * 2. select POST
- * 3. add header : Key: Content-Type, Value: application/json
- * 4. add body (raw):
-        {
-            "partName": "Drum brake",
-            "man": {
-                "manId": 1,
-                "manName": "FIAT"
-            },
-            "model": {
-                "modelId": 2,
-                "modelName": "Mgh34-5"
-            },
+    // Part:
+    /*
+     * example for testing addPartJson:
+     * 1. in postman enter http://localhost:8080/webshop/rest/parts/json/add/part
+     * 2. select POST
+     * 3. add header : Key: Content-Type, Value: application/json
+     * 4. add body (raw):
+        { "partName": "Drum brake",
+            "man": { "manId": 1, "manName": "FIAT" },
+            "model": { "modelId": 2, "modelName": "Mgh34-5" },
             "price": 29.9,
             "quantity": 20,
-            "carSystem": {
-                "systemId": 1,
-                "systemName": "Brake System"
-            }
+            "carSystem": { "systemId": 1, "systemName":"Brake System" }
         }
- */
+     */
     @POST
-    @Path("/parts/json/add/{part}")
+    @Path("/parts/json/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces("text/plain")
-    public Response addPartJson(InputStream incomingData) { //? @PathParam("part") Part part
-        StringBuilder crunchifyBuilder = new StringBuilder();
-        try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
-            String line = null;
-            while ((line = in.readLine()) != null) {
-                crunchifyBuilder.append(line);
-            }
-        } catch (Exception e) {
-            System.out.println("Error Parsing: - ");
-        }
-
-        JSONObject jsObj = new JSONObject(crunchifyBuilder.toString());
-        Part p = new Part();
-        //name:
-        String partName = jsObj.getString("partName");
-        p.setPartName(partName);
-        //price:
-        float price = jsObj.getBigDecimal("price").floatValue();
-        p.setPrice(price);
-        //CarSystem:
-        CarSystem carSystem = new CarSystem();
-        JSONObject jsCarSystem = jsObj.getJSONObject("carSystem");
-        int systemId = jsCarSystem.getInt("systemId");
-        carSystem.setSystemId(systemId);
-        p.setCarSystem(carSystem);
-        //Manufacturer:
-        Manufacturer manufacturer = new Manufacturer();
-        JSONObject jsManufacturer = jsObj.getJSONObject("man");
-        int manufacturerId = jsManufacturer.getInt("manId");
-        manufacturer.setManId(manufacturerId);
-        p.setMan(manufacturer);
-        //quantity
-        int quantity = jsObj.getInt("quantity");
-        p.setQuantity(quantity);
-
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addPartJson(Part part) {
         PartDao partDao = new PartDao();
-        partDao.addNewPart(p);
-
-        String msg = "New part id: " + p.getPartId();
-        return Response.ok(msg, "text/plain").build();
+        partDao.addNewPart(part);
+        String msg = "New part id: " + part.getPartId();
+        return Response.ok(part).build();
     }
 }
