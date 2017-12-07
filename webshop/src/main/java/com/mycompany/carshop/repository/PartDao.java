@@ -164,4 +164,31 @@ public class PartDao {
         session.close();
         return allPartsFromSystem;
     }
+
+    /**
+     * Edits existing part.
+     * @param part
+     */
+    public void editPart(Part part) {
+        //TODO: Check if all necessary fields are populated.
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.flush();
+        Transaction t = session.beginTransaction();
+        try {
+            log.info("Step 4: saving part");
+            session.update(part);
+            log.info("Step 5: committing transaction");
+            t.commit();
+        } catch (HibernateException ex) {
+            if (t != null) {
+                t.rollback();
+                log.error("Hibernate Exception while saving new Part");
+                ex.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+    }
+
 }

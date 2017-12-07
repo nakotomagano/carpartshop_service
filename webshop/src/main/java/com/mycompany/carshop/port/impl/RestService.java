@@ -1,9 +1,11 @@
 package com.mycompany.carshop.port.impl;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.MatrixParam;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -11,7 +13,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.carshop.model.beans.CarSystem;
 import com.mycompany.carshop.model.beans.Member;
 import com.mycompany.carshop.model.beans.Part;
@@ -80,7 +82,7 @@ public class RestService {
     public CarSystem getCarSystemJson(@PathParam("id") int id) {
         CarSystemDAO csDao = new CarSystemDAO();
         CarSystem carSystem = csDao.getSystemById(id);
-        String jsonCarSystem = toJson(carSystem);
+//        String jsonCarSystem = toJson(carSystem);
         return carSystem;
     }
 
@@ -91,7 +93,7 @@ public class RestService {
         CarSystemDAO csDao = new CarSystemDAO();
         return csDao.getAllSystems();
     }
-
+/*
     // CarSystem --> JSON document
     private String toJson(Object obj) {
         String json = "If you see this, there's a problem.";
@@ -101,7 +103,7 @@ public class RestService {
         }
         return json;
     }
-
+*/
     @GET
     @Path("/systems/xml/part/{id: \\d+}")
     @Produces({ MediaType.APPLICATION_XML })
@@ -179,6 +181,32 @@ public class RestService {
         PartDao partDao = new PartDao();
         partDao.addNewPart(part);
         String msg = "New part id: " + part.getPartId();
+        return Response.ok(part).build();
+    }
+
+
+    //PUT:
+
+    @PUT
+    @Path("/parts/json/edit")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response editPartJson(Part part) {
+        PartDao partDao = new PartDao();
+        partDao.editPart(part);
+        return Response.ok(part).build();
+    }
+
+
+
+    //DELETE:
+    @DELETE
+    @Path("/parts/json/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deletePartJson(Part part) {
+        PartDao partDao = new PartDao();
+        partDao.deletePart(part);
         return Response.ok(part).build();
     }
 }
