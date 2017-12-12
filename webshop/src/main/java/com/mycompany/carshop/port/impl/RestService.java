@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 //import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.carshop.model.beans.CarSystem;
@@ -40,10 +41,15 @@ public class RestService {
 
     @GET
     @Path("/systems/xml/carSystem/{id: \\d+}")
-    @Produces({ MediaType.APPLICATION_XML })
-    public CarSystem getSystemXml(@PathParam("id") int id) {
-        CarSystemDAO csDao = new CarSystemDAO();
-        return csDao.getSystemById(id);
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getSystemXml(@PathParam("id") Integer id) {
+    	if(id > 10) {
+    		return Response.status(Status.BAD_REQUEST).build();
+    	}
+    	CarSystemDAO csDAO= new CarSystemDAO();
+        CarSystem cs = csDAO.getSystemById(id);
+        
+        return Response.ok().entity(cs).build();
     }
 
     // Matrix param example:
@@ -70,7 +76,7 @@ public class RestService {
 
     @GET
     @Path("/systems/xml/allSystems")
-    @Produces({ MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public CarSystem[] getAllCarSystemsXml() {
         CarSystemDAO csDao = new CarSystemDAO();
         return csDao.getAllSystems();
@@ -184,6 +190,17 @@ public class RestService {
         return Response.ok(part).build();
     }
 
+    @POST
+    @Path("/system/addSystem")
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response addNewSystem(CarSystem carSystem) throws Exception {
+    	CarSystemDAO carSystemDao = new CarSystemDAO();
+    	carSystemDao.addNewSystem(carSystem);
+    	
+    	return Response.ok(carSystem).build();
+    	
+    }
 
     //PUT:
 
@@ -209,4 +226,14 @@ public class RestService {
         partDao.deletePart(part);
         return Response.ok(part).build();
     }
+    @DELETE
+    @Path("/system/deleteSystem/{id}")
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response deleteSystem(@PathParam("id") Integer id) {
+        CarSystemDAO cs = new CarSystemDAO();
+        cs.deleteSystem(id);
+        return Response.ok().build();
+    }
+    
 }

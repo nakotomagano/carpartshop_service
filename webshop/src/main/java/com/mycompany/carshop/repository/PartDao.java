@@ -128,7 +128,7 @@ public class PartDao {
     }
 
     /**
-     * Deletes part from database.
+     * Deleting part from database.
      * @param part
      */
     public void deletePart(Part part) {
